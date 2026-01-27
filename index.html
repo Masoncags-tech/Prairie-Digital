@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prairie Digital - Web Design for Local Businesses</title>
+    <meta name="description" content="Modern websites and SEO for local businesses in Central Illinois. We build fast, beautiful sites that convert.">
+    <title>Prairie Digital - Web Design & SEO for Local Business</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">🌐 Prairie Digital</div>
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                Prairie Digital
+            </div>
             <div class="nav-links">
-                <a href="#work">Work</a>
-                <a href="#how" class="nav-cta">Let's talk</a>
+                <a href="#services">Services</a>
+                <a href="#process">How It Works</a>
+                <a href="#contact" class="nav-cta">Let's talk</a>
             </div>
         </div>
     </nav>
@@ -21,77 +29,137 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1>Transform your business with a website that actually works</h1>
-            <p>Most local businesses leave money on the table with outdated websites. We fix that in one week.</p>
-            <a href="#contact" class="button button-primary">Start here</a>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
-        <div class="container">
-            <div class="stat">
-                <div class="stat-number">70%</div>
-                <p>of customers search online before calling</p>
-            </div>
-            <div class="stat">
-                <div class="stat-number">3 sec</div>
-                <p>is how long before they leave a slow site</p>
-            </div>
-            <div class="stat">
-                <div class="stat-number">24/7</div>
-                <p>your AI chat works while you work</p>
+            <div class="hero-content">
+                <h1>Your website should be working for you</h1>
+                <p>Most local businesses leave thousands on the table with outdated sites. We build websites that convert visitors into customers. Fast, beautiful, optimized.</p>
+                <a href="#contact" class="button button-primary">Schedule a conversation</a>
             </div>
         </div>
     </section>
 
-    <!-- What We Do -->
-    <section class="services" id="work">
+    <!-- Value Props -->
+    <section class="value-props">
         <div class="container">
-            <h2>What we build</h2>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <polyline points="13 2 13 9 20 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M9 13h6M9 17h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Beautiful Design</h3>
+                    <p>Websites that look professional and feel premium. Design that reflects who you are.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>AI Chat</h3>
+                    <p>Answers customer questions 24/7. Captures leads automatically. Texts you when they're ready to book.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>SEO Built In</h3>
+                    <p>Optimized for search engines so people actually find you. Local SEO that brings real customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Gap -->
+    <section class="gap">
+        <div class="container">
+            <h2>The Problem</h2>
+            <div class="gap-content">
+                <div class="gap-stat">
+                    <div class="gap-number">70%</div>
+                    <p>of customers search online before calling any local business</p>
+                </div>
+                <div class="gap-divider"></div>
+                <div class="gap-stat">
+                    <div class="gap-number">3 sec</div>
+                    <p>how long before they bounce to a competitor's site</p>
+                </div>
+                <div class="gap-divider"></div>
+                <div class="gap-stat">
+                    <div class="gap-number">∞</div>
+                    <p>the cost of being invisible online</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>What we do</h2>
             
-            <div class="service">
-                <div class="service-content">
-                    <h3>Modern, Fast Websites</h3>
-                    <p>Built to convert. Optimized for mobile. Loads in under 1 second. Your customers get a professional first impression every time.</p>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
                 </div>
+                <h3>Website Design</h3>
+                <p>Modern, responsive websites that convert. Built on best practices. Loads in under 1 second. Works perfectly on every device.</p>
             </div>
 
-            <div class="service service-reverse">
-                <div class="service-content">
-                    <h3>AI That Works For You</h3>
-                    <p>Your website answers customer questions 24/7. Captures leads automatically. Texts you when someone's ready to book. You focus on closing.</p>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="6.5" cy="6.5" r="1.5" fill="currentColor"/>
+                    </svg>
                 </div>
+                <h3>Search Optimization</h3>
+                <p>SEO built into every page. We optimize for the keywords your customers are actually searching. Get found by the right people.</p>
             </div>
 
-            <div class="service">
-                <div class="service-content">
-                    <h3>Real Results</h3>
-                    <p>We don't build vanity projects. You'll see 5-10 new calls per month from people actively searching for your service. That's qualified traffic.</p>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" fill="currentColor"/>
+                    </svg>
                 </div>
+                <h3>Lead Capture</h3>
+                <p>AI chat that qualifies leads 24/7. Every visitor who needs help gets helped. You get notified instantly when someone's ready to book.</p>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how" id="how">
+    <!-- Process -->
+    <section class="process" id="process">
         <div class="container">
-            <h2>How we work</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-number">1</div>
-                    <h3>Call</h3>
-                    <p>We talk for 10 minutes. You tell me about your business. I tell you how we can help. No sales pitch.</p>
+            <h2>The Process</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">01</div>
+                    <h3>Discovery</h3>
+                    <p>We learn about your business, your customers, your goals. A 15-minute conversation tells us everything we need to know.</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">2</div>
+
+                <div class="process-step">
+                    <div class="process-number">02</div>
                     <h3>Build</h3>
-                    <p>We build your website. Modern design. Fast. Optimized. AI chat included. You see it in one week.</p>
+                    <p>We design and build your website. Modern design. Fast performance. AI chat included. SEO built in. One week turnaround.</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">3</div>
-                    <h3>Launch</h3>
-                    <p>Your site goes live. You start getting calls. We handle everything from there. You focus on your business.</p>
+
+                <div class="process-step">
+                    <div class="process-number">03</div>
+                    <h3>Launch & Grow</h3>
+                    <p>Your site goes live. You start getting calls from customers who found you online. We handle everything from there.</p>
                 </div>
             </div>
         </div>
@@ -100,21 +168,24 @@
     <!-- Pricing -->
     <section class="pricing">
         <div class="container">
-            <h2>Pricing</h2>
-            <div class="price-content">
-                <div class="price-box">
-                    <h3>Website + AI</h3>
-                    <div class="price-amount">$1,200</div>
-                    <p class="price-desc">one-time setup</p>
-                    <p class="price-monthly">+ $99/month</p>
+            <h2>Investment</h2>
+            <div class="pricing-card">
+                <div class="pricing-main">
+                    <h3>Website + AI + SEO</h3>
+                    <div class="pricing-amount">$1,200</div>
+                    <p class="pricing-subtext">one-time setup</p>
+                    <p class="pricing-monthly">+ $99/month to operate</p>
                 </div>
-                <div class="price-list">
+
+                <div class="pricing-features">
+                    <h4>Includes</h4>
                     <ul>
                         <li>Professional website design</li>
-                        <li>Mobile optimized</li>
+                        <li>Mobile optimization</li>
                         <li>AI chat assistant</li>
+                        <li>SEO optimization</li>
+                        <li>Fast loading (&lt;1 second)</li>
                         <li>Google reviews integration</li>
-                        <li>Fast loading (1 sec)</li>
                         <li>Launch in one week</li>
                         <li>Ongoing support</li>
                     </ul>
@@ -128,18 +199,20 @@
         <div class="container">
             <h2>What clients say</h2>
             <div class="testimonials-grid">
-                <div class="testimonial">
-                    <p>"We started getting calls the first week. Best investment we made for the business."</p>
-                    <p class="testimonial-author">— Local Restaurant Owner</p>
-                </div>
-                <div class="testimonial">
-                    <p>"The AI chat answers questions while we're on jobs. Saves us hours every day."</p>
-                    <p class="testimonial-author">— HVAC Service Owner</p>
-                </div>
-                <div class="testimonial">
+                <blockquote class="testimonial">
+                    <p>"Started getting calls the first week. Best investment we made."</p>
+                    <footer>— Restaurant Owner</footer>
+                </blockquote>
+
+                <blockquote class="testimonial">
+                    <p>"The AI chat answers questions while we're on jobs. Saves us hours every week."</p>
+                    <footer>— HVAC Service</footer>
+                </blockquote>
+
+                <blockquote class="testimonial">
                     <p>"Professional, fast, no upsell. He delivered exactly what he promised."</p>
-                    <p class="testimonial-author">— Plumbing Business</p>
-                </div>
+                    <footer>— Plumbing Business</footer>
+                </blockquote>
             </div>
         </div>
     </section>
@@ -149,13 +222,13 @@
         <div class="container">
             <h2>Let's build something</h2>
             <p>Stop losing customers to competitors with better websites.</p>
-            <div class="contact-options">
-                <div class="contact-method">
-                    <p class="contact-label">Call</p>
+            <div class="contact-details">
+                <div class="contact-option">
+                    <span class="contact-label">Call</span>
                     <a href="tel:2173034601">(217) 303-4601</a>
                 </div>
-                <div class="contact-method">
-                    <p class="contact-label">Email</p>
+                <div class="contact-option">
+                    <span class="contact-label">Email</span>
                     <a href="mailto:mason@prairie-digital.com">mason@prairie-digital.com</a>
                 </div>
             </div>
@@ -165,7 +238,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>Prairie Digital · Web design for Central Illinois</p>
+            <p>Prairie Digital. Web design and SEO for Central Illinois.</p>
         </div>
     </footer>
 </body>
