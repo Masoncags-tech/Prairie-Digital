@@ -138,6 +138,10 @@ body {
     align-items: center;
 }
 
+.hero-content {
+    max-width: 700px;
+}
+
 .hero-content h1 {
     font-size: 3.5rem;
     line-height: 1.2;
@@ -352,9 +356,9 @@ body {
 
 .pricing-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 3rem;
-    max-width: 900px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -418,33 +422,7 @@ body {
     font-size: 0.9rem;
 }
 
-.roi-box {
-    background: linear-gradient(135deg, var(--primary) 0%, #0d4620 100%);
-    color: white;
-    padding: 2.5rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.roi-box h4 {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-}
-
-.roi-box p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 0.75rem;
-}
-
-.roi-box strong {
-    font-weight: 700;
-}
-
-/* Testimonials */
+/* ROI box removed *//* Testimonials */
 .testimonials {
     padding: 6rem 0;
 }
@@ -501,15 +479,17 @@ body {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 800;
+    color: white;
 }
 
 .cta-final p {
     font-size: 1.1rem;
     margin-bottom: 2.5rem;
-    opacity: 0.95;
+    opacity: 1;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    color: white;
 }
 
 /* Contact */
