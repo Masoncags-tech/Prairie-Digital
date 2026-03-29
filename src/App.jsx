@@ -174,7 +174,7 @@ const HeroSection = ({ onGetStarted, onSeeHow }) => {
         </RevealDiv>
         <RevealDiv delay={200}>
           <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-light leading-relaxed" style={{ color: 'rgba(44,62,45,0.8)' }}>
-            Digital employees that handle scheduling, emails, and customer support. Reliable, steady, built for small businesses.
+            Digital employees that run entire workflows across your business. From operations and client management to the tasks you haven't had time to think about yet.
           </p>
         </RevealDiv>
         <RevealDiv delay={300}>
