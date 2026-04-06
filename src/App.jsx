@@ -1,4 +1,3 @@
-// BUILD TEST
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -232,7 +231,7 @@ const HowItWorksSection = () => {
         </RevealDiv>
 
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
-          <div className="hidden md:block absolute top-[45px] left-[15%] right-[15%] h-[2px] z-0" style={{ backgroundColor: '#DEE6DC' }}></div>
+
 
           <RevealDiv variant="left" className="relative z-10 bg-white rounded-[2rem] p-10 border hover:-translate-y-1.5 transition-all duration-300 cursor-default" style={{ boxShadow: '0 10px 40px -10px rgba(44, 62, 45, 0.08)', borderColor: 'rgba(238,242,236,0.5)' }} delay={0}>
             <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-sm mx-auto md:mx-0 border-2" style={{ backgroundColor: '#F9F6F0', borderColor: '#DEE6DC', transform: 'rotate(-3deg)' }}>
