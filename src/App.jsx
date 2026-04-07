@@ -114,8 +114,8 @@ function HomePage() {
           </svg>
         </div>
         <div className="hero-content">
-          <RevealDiv as="span" className="hero-eyebrow">A new kind of workforce</RevealDiv>
-          <RevealDiv as="h1" delay={1}>Your new best employee <em>doesn't sleep.</em></RevealDiv>
+
+          <RevealDiv as="h1" delay={1}>Your new best employee <em style={{color: '#ffffff'}}>doesn't sleep.</em></RevealDiv>
           <RevealDiv as="p" className="hero-sub" delay={2}>Digital employees that run entire workflows across your business. From operations and client management to the tasks you haven't had time to think about yet.</RevealDiv>
           <RevealDiv className="hero-actions" delay={3}>
             <a href="#cta" className="btn-primary">Meet your new hire <span>→</span></a>
