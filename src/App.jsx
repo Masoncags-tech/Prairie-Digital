@@ -4,22 +4,23 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 /* ── Scroll-reveal hook ── */
 function useReveal() {
   const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add('visible'); observer.unobserve(el) } },
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el) } },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
-  return ref
+  return { ref, visible }
 }
 
 function RevealDiv({ className = '', delay = 0, children, as: Tag = 'div' }) {
-  const ref = useReveal()
-  const cls = ['reveal', delay ? `reveal-delay-${delay}` : '', className].filter(Boolean).join(' ')
+  const { ref, visible } = useReveal()
+  const cls = ['reveal', visible ? 'visible' : '', delay ? `reveal-delay-${delay}` : '', className].filter(Boolean).join(' ')
   return <Tag ref={ref} className={cls}>{children}</Tag>
 }
 
