@@ -39,6 +39,140 @@ function FaqItem({ question, answer, isOpen, onToggle, delay }) {
   )
 }
 
+/* ── Modal ── */
+function Modal({ isOpen, onClose, title, children }) {
+  useEffect(() => {
+    if (isOpen) { document.body.style.overflow = 'hidden' } else { document.body.style.overflow = '' }
+    return () => { document.body.style.overflow = '' }
+  }, [isOpen])
+  if (!isOpen) return null
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(44,62,45,0.6)', backdropFilter: 'blur(4px)' }}></div>
+      <div className="relative bg-white rounded-[2rem] p-10 max-w-lg w-full shadow-2xl" onClick={e => e.stopPropagation()} style={{ boxShadow: '0 25px 60px -15px rgba(44,62,45,0.25)' }}>
+        <button onClick={onClose} className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200" style={{ backgroundColor: '#EEF2EC', color: '#4A5548' }}
+          onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#DEE6DC' }} onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#EEF2EC' }}>
+          <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <h3 className="font-serif text-3xl mb-2" style={{ color: '#2C3E2D' }}>{title}</h3>
+        {children}
+      </div>
+    </div>
+  )
+}
+
+/* ── Get Started Modal ── */
+function GetStartedModal({ isOpen, onClose }) {
+  const [formData, setFormData] = useState({ name: '', email: '', business: '', message: '' })
+  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSubmitting(true)
+    try {
+      await fetch('https://formsubmit.co/ajax/pons@prairie-digital.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ _subject: `New Lead: ${formData.name} - ${formData.business}`, name: formData.name, email: formData.email, business: formData.business, message: formData.message || '(no message)', _template: 'table' }),
+      })
+    } catch (err) { /* still show success */ }
+    setSubmitting(false)
+    setSubmitted(true)
+  }
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} title="Get Started">
+      {submitted ? (
+        <div className="text-center py-8">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#EEF2EC' }}>
+            <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7ba381" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+          </div>
+          <p className="font-serif text-2xl mb-2" style={{ color: '#2C3E2D' }}>We'll be in touch!</p>
+          <p className="text-lg" style={{ color: '#4A5548' }}>Thank you for reaching out. Our team will contact you within 24 hours.</p>
+          <button onClick={onClose} className="mt-6 px-8 py-3 rounded-full text-white font-semibold transition-all duration-300" style={{ backgroundColor: '#D4AF37' }}>Close</button>
+        </div>
+      ) : (
+        <>
+          <p className="text-lg mb-6" style={{ color: '#4A5548' }}>Tell us a bit about yourself and we'll get back to you shortly.</p>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {[{ name: 'name', placeholder: 'Your Name', type: 'text' }, { name: 'email', placeholder: 'Email Address', type: 'email' }, { name: 'business', placeholder: 'Business Name', type: 'text' }].map((field) => (
+              <input key={field.name} type={field.type} name={field.name} placeholder={field.placeholder} value={formData[field.name]} onChange={handleChange} required
+                className="w-full px-5 py-3 rounded-2xl border text-lg outline-none transition-all duration-200" style={{ borderColor: '#DEE6DC', backgroundColor: '#F9F6F0', color: '#2C3E2D' }}
+                onFocus={e => { e.currentTarget.style.borderColor = '#7ba381'; e.currentTarget.style.backgroundColor = 'white' }} onBlur={e => { e.currentTarget.style.borderColor = '#DEE6DC'; e.currentTarget.style.backgroundColor = '#F9F6F0' }} />
+            ))}
+            <textarea name="message" placeholder="What tasks are slowing you down?" value={formData.message} onChange={handleChange} rows={3}
+              className="w-full px-5 py-3 rounded-2xl border text-lg outline-none transition-all duration-200 resize-none" style={{ borderColor: '#DEE6DC', backgroundColor: '#F9F6F0', color: '#2C3E2D' }}
+              onFocus={e => { e.currentTarget.style.borderColor = '#7ba381'; e.currentTarget.style.backgroundColor = 'white' }} onBlur={e => { e.currentTarget.style.borderColor = '#DEE6DC'; e.currentTarget.style.backgroundColor = '#F9F6F0' }} />
+            <button type="submit" disabled={submitting} className="w-full py-3 rounded-full text-white text-lg font-semibold transition-all duration-300 hover:-translate-y-0.5" style={{ backgroundColor: submitting ? '#B8962B' : '#D4AF37', opacity: submitting ? 0.7 : 1 }}
+              onMouseEnter={e => { if (!submitting) e.currentTarget.style.backgroundColor = '#B8962B' }} onMouseLeave={e => { if (!submitting) e.currentTarget.style.backgroundColor = '#D4AF37' }}>
+              {submitting ? 'Sending...' : 'Submit'}
+            </button>
+          </form>
+        </>
+      )}
+    </Modal>
+  )
+}
+
+/* ── Book Call Modal ── */
+function BookCallModal({ isOpen, onClose }) {
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', time: '' })
+  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSubmitting(true)
+    try {
+      await fetch('https://formsubmit.co/ajax/pons@prairie-digital.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ _subject: `Call Request: ${formData.name} - ${formData.time}`, name: formData.name, email: formData.email, phone: formData.phone || '(not provided)', preferred_time: formData.time, _template: 'table' }),
+      })
+    } catch (err) { /* still show success */ }
+    setSubmitting(false)
+    setSubmitted(true)
+  }
+  const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM']
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} title="Book a 15-Minute Call">
+      {submitted ? (
+        <div className="text-center py-8">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#EEF2EC' }}>
+            <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7ba381" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+          </div>
+          <p className="font-serif text-2xl mb-2" style={{ color: '#2C3E2D' }}>Call Booked!</p>
+          <p className="text-lg" style={{ color: '#4A5548' }}>We'll send a calendar invite to your email. Looking forward to chatting!</p>
+          <button onClick={onClose} className="mt-6 px-8 py-3 rounded-full text-white font-semibold transition-all duration-300" style={{ backgroundColor: '#D4AF37' }}>Close</button>
+        </div>
+      ) : (
+        <>
+          <p className="text-lg mb-6" style={{ color: '#4A5548' }}>No pressure, no hard sell. Just a friendly chat about your business.</p>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {[{ name: 'name', placeholder: 'Your Name', type: 'text' }, { name: 'email', placeholder: 'Email Address', type: 'email' }, { name: 'phone', placeholder: 'Phone Number (optional)', type: 'tel' }].map((field) => (
+              <input key={field.name} type={field.type} name={field.name} placeholder={field.placeholder} value={formData[field.name]} onChange={handleChange} required={field.name !== 'phone'}
+                className="w-full px-5 py-3 rounded-2xl border text-lg outline-none transition-all duration-200" style={{ borderColor: '#DEE6DC', backgroundColor: '#F9F6F0', color: '#2C3E2D' }}
+                onFocus={e => { e.currentTarget.style.borderColor = '#7ba381'; e.currentTarget.style.backgroundColor = 'white' }} onBlur={e => { e.currentTarget.style.borderColor = '#DEE6DC'; e.currentTarget.style.backgroundColor = '#F9F6F0' }} />
+            ))}
+            <select name="time" value={formData.time} onChange={handleChange} required className="w-full px-5 py-3 rounded-2xl border text-lg outline-none transition-all duration-200"
+              style={{ borderColor: '#DEE6DC', backgroundColor: '#F9F6F0', color: formData.time ? '#2C3E2D' : '#9aaa96' }}
+              onFocus={e => { e.currentTarget.style.borderColor = '#7ba381'; e.currentTarget.style.backgroundColor = 'white' }} onBlur={e => { e.currentTarget.style.borderColor = '#DEE6DC'; e.currentTarget.style.backgroundColor = '#F9F6F0' }}>
+              <option value="">Preferred Time Slot</option>
+              {timeSlots.map(slot => <option key={slot} value={slot}>{slot}</option>)}
+            </select>
+            <button type="submit" disabled={submitting} className="w-full py-3 rounded-full text-white text-lg font-semibold transition-all duration-300 hover:-translate-y-0.5" style={{ backgroundColor: submitting ? '#B8962B' : '#D4AF37', opacity: submitting ? 0.7 : 1 }}
+              onMouseEnter={e => { if (!submitting) e.currentTarget.style.backgroundColor = '#B8962B' }} onMouseLeave={e => { if (!submitting) e.currentTarget.style.backgroundColor = '#D4AF37' }}>
+              {submitting ? 'Booking...' : 'Book My Call'}
+            </button>
+          </form>
+        </>
+      )}
+    </Modal>
+  )
+}
+
 /* ── HomePage ── */
 function HomePage() {
   const [navScrolled, setNavScrolled] = useState(false)
@@ -46,6 +180,8 @@ function HomePage() {
   const [openFaq, setOpenFaq] = useState(null)
   const [capSlide, setCapSlide] = useState(0)
   const capCarouselRef = useRef(null)
+  const [showGetStarted, setShowGetStarted] = useState(false)
+  const [showBookCall, setShowBookCall] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setNavScrolled(window.scrollY > 40)
@@ -152,7 +288,7 @@ function HomePage() {
             <li><a href="#how-it-works">How it works</a></li>
             <li><a href="#capabilities">Capabilities</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#cta" className="nav-cta">Get Started</a></li>
+            <li><button onClick={() => setShowGetStarted(true)} className="nav-cta">Get Started</button></li>
           </ul>
           <button className="nav-hamburger" onClick={() => setMobileOpen(v => !v)} aria-label="Menu">
             <span></span><span></span><span></span>
@@ -165,7 +301,7 @@ function HomePage() {
         <a href="#how-it-works" onClick={closeMobile}>How it works</a>
         <a href="#capabilities" onClick={closeMobile}>Capabilities</a>
         <a href="#faq" onClick={closeMobile}>FAQ</a>
-        <a href="#cta" onClick={closeMobile}>Get Started</a>
+        <button onClick={() => { closeMobile(); setShowGetStarted(true) }}>Get Started</button>
       </div>
 
       <main>
@@ -205,7 +341,7 @@ function HomePage() {
           <RevealDiv as="h1" delay={1}>Your new best employee <em style={{color: '#ffffff'}}>doesn't sleep.</em></RevealDiv>
           <RevealDiv as="p" className="hero-sub" delay={2}>Digital employees that run entire workflows across your business. From operations and client management to the tasks you haven't had time to think about yet.</RevealDiv>
           <RevealDiv className="hero-actions" delay={3}>
-            <a href="#cta" className="btn-primary">Meet your new hire <span>→</span></a>
+            <button onClick={() => setShowGetStarted(true)} className="btn-primary">Meet your new hire <span>→</span></button>
             <a href="#how-it-works" className="btn-secondary">See how it works</a>
           </RevealDiv>
         </div>
@@ -459,10 +595,13 @@ function HomePage() {
           <RevealDiv as="h2">Ready to grow your team?</RevealDiv>
           <RevealDiv as="p" delay={1}>Book a short discovery call. We'll chat about your bottlenecks and see if a digital employee is the right fit. No pressure, no hard sell.</RevealDiv>
           <RevealDiv delay={2}>
-            <a href="mailto:hello@prairie-digital.com" className="btn-primary">Book a 15-minute call <span>→</span></a>
+            <button onClick={() => setShowBookCall(true)} className="btn-primary">Book a 15-minute call <span>→</span></button>
           </RevealDiv>
         </div>
       </section>
+
+      <GetStartedModal isOpen={showGetStarted} onClose={() => setShowGetStarted(false)} />
+      <BookCallModal isOpen={showBookCall} onClose={() => setShowBookCall(false)} />
 
       {/* FOOTER */}
       </main>
